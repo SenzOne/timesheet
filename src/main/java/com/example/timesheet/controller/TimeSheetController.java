@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class TimeSheetController {
@@ -29,7 +30,10 @@ public class TimeSheetController {
 
 
     @PostMapping("/time-sheets")
-    public ResponseEntity<TimeSheet> create(TimeSheet timeSheet) {
+    public ResponseEntity<Optional<TimeSheet>> create(TimeSheet timeSheet) {
+        if (timeSheet.getProjectId() == null) {
+            return ResponseEntity.badRequest().build();
+        }
         return ResponseEntity.ok(timeSheetService.create(timeSheet));
     }
 
