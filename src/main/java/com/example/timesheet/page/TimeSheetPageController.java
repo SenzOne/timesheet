@@ -1,5 +1,6 @@
-package com.example.timesheet.controller;
+package com.example.timesheet.page;
 
+import com.example.timesheet.page.TimeSheetPageDto;
 import com.example.timesheet.service.TimeSheetPageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;

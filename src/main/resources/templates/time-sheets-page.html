@@ -22,7 +22,7 @@
    <tbody>
    <tr th:each="timesheet : ${timeSheets}">
       <td><span th:text="${timesheet.getTimeSheetId()}"></span></td>
-      <td><span th:text="${timesheet.getProjectName()}"></span></td>
+      <td><a th:href="@{'/home/project-page/{id}'(id=${timesheet.getProjectId()})}"><span th:text="${timesheet.getProjectName()}"></span></a></td>
       <td><span th:text="${timesheet.getMinutes()}"></span></td>
       <td><span th:text="${timesheet.getTimeSheetCreatedAt()}"></span></td>
       <td><a th:href="@{'/home/time-sheets/{id}'(id=${timesheet.getTimeSheetId()})}">Перейти к записи</a></td>

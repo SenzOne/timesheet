@@ -1,6 +1,6 @@
 package com.example.timesheet.service;
 
-import com.example.timesheet.controller.TimeSheetPageDto;
+import com.example.timesheet.page.TimeSheetPageDto;
 import com.example.timesheet.model.Project;
 import com.example.timesheet.model.TimeSheet;
 import lombok.RequiredArgsConstructor;
@@ -29,8 +29,10 @@ public class TimeSheetPageService {
         TimeSheetPageDto timeSheetPageDto = new TimeSheetPageDto();
         timeSheetPageDto.setTimeSheetId(String.valueOf(timeSheet.getId()));
         timeSheetPageDto.setProjectName(project.getName());
+        timeSheetPageDto.setProjectId(String.valueOf(project.getId()));
         timeSheetPageDto.setMinutes(String.valueOf(timeSheet.getMinutes()));
         timeSheetPageDto.setTimeSheetCreatedAt(timeSheet.getCreatedAt().toString());
+
         return timeSheetPageDto;
     }
 

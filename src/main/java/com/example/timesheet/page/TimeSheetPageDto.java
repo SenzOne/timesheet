@@ -1,4 +1,4 @@
-package com.example.timesheet.controller;
+package com.example.timesheet.page;
 
 import lombok.Data;
 
@@ -9,4 +9,5 @@ public class TimeSheetPageDto {
     private String timeSheetId;
     private String minutes;
     private String timeSheetCreatedAt;
+    private String projectId;
 }
