@@ -1,10 +1,11 @@
 package com.example.timesheet.model;
 
+import lombok.Builder;
 import lombok.Data;
-import org.springframework.stereotype.Component;
 
-@Component
+
 @Data
+@Builder
 public class Project {
 
     private Long id;

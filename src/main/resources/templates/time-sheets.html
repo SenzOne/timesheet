@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
    <meta charset="UTF-8">
    <meta name="viewport"
@@ -8,8 +8,9 @@
    <title>Home / TimeSheet page</title>
 </head>
 <body>
-<h1>Запись рабочего времени #<span th:text="${timeSheetId}"></span> </h1>
-минут потрачено: <span th:text="${timeSheetMinutes}"></span> <br>
-Дата создания: <span th:text="${timeSheetCreatedAt}"></span> <br>
+<h1>Запись рабочего времени #<span th:text="${timeSheets.timeSheetId}"></span> </h1>
+Проект: <span th:text="${timeSheets.getProjectName()}"></span> <br>
+Минут потрачено: <span th:text="${timeSheets.getMinutes()}"></span> <br>
+Дата создания: <span th:text="${timeSheets.getTimeSheetCreatedAt()}"></span> <br>
 </body>
 </html>

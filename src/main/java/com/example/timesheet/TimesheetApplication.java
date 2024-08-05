@@ -1,6 +1,8 @@
 package com.example.timesheet;
 
+import com.example.timesheet.model.Project;
 import com.example.timesheet.model.TimeSheet;
+import com.example.timesheet.repository.ProjectRepository;
 import com.example.timesheet.repository.TimesheetRepository;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -16,17 +18,25 @@ public class TimesheetApplication {
     public static void main(String[] args) {
         ApplicationContext ctx = SpringApplication.run(TimesheetApplication.class, args);
         TimesheetRepository timesheetRepository = ctx.getBean(TimesheetRepository.class);
+        ProjectRepository projectRepository = ctx.getBean(ProjectRepository.class);
+
+        for (int i = 1; i <= 5; i++) {
+            projectRepository.create(Project.builder()
+                    .id((long) i)
+                    .name("Project " + i)
+                    .build());
+        }
 
         LocalDateTime localDateTime = LocalDateTime.now();
-        for (int i = 0; i <10; i++) {
+        for (int i = 1; i <= 10; i++) {
             LocalDate createdAt = LocalDate.from(localDateTime.plusDays(1));
             TimeSheet timeSheet = TimeSheet.builder()
                     .id((long) i)
                     .createdAt(createdAt)
                     .minutes(ThreadLocalRandom.current().nextInt(100, 1000))
+                    .projectId(ThreadLocalRandom.current().nextLong(1, 6))
                     .build();
             timesheetRepository.create(timeSheet);
         }
     }
-
 }
