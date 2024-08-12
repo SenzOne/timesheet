@@ -1,0 +1,93 @@
+openapi: 3.0.1
+info:
+  title: Project API
+  description: Api для работы с проектами
+  version: "1.0.0"
+tags:
+  - name: Projects
+    description: Api для работы с проектами
+paths:
+  /projects:
+    get:
+      tags:
+        - Projects
+      summary: Get Project
+      description: Получить проект по его идентификатору
+      responses:
+        "200":
+          description: Список всех проектов
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Project'
+    post:
+      tags:
+        - Projects
+      summary: Create Project
+      description: Создать новый проект
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Project'
+      responses:
+        "200":
+          description: Проект успешно создан
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+  /projects/{id}:
+    get:
+      tags:
+        - Projects
+      summary: Get Project by ID
+      description: Получить проект по идентификатору
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Проект найден
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+        "404":
+          description: Проект не найден
+    post:
+      tags:
+        - Projects
+      summary: Delete Project by ID
+      description: Удалить проект по идентификатору
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "204":
+          description: Проект успешно удален
+components:
+  schemas:
+    Project:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        description:
+          type: string
+        startDate:
+          type: string
+          format: date
+        endDate:
+          type: string
+          format: date
