@@ -17,18 +17,18 @@ public class ProjectService {
     }
 
     public Optional<Optional<Project>> getById(Long id) {
-        return Optional.ofNullable(projectRepository.getById(id));
+        return Optional.of(projectRepository.findById(id));
     }
 
     public List<Project> getAll() {
-        return projectRepository.getAll();
+        return projectRepository.findAll();
     }
 
     public Project create(Project project) {
-        return projectRepository.create(project);
+        return projectRepository.save(project);
     }
 
     public void delete(Long id) {
-        projectRepository.delete(id);
+        projectRepository.deleteById(id);
     }
 }
