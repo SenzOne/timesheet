@@ -3,9 +3,10 @@ package com.example.timesheet.model;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Data
@@ -14,23 +15,30 @@ import java.util.List;
 public class User {
 
     @Id
-    @EqualsAndHashCode.Exclude
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+
+    @Column(name = "username")
     private String username;
+
+    @Column(name = "password")
     private String password;
 
-    @ManyToMany
-    @JoinTable(name = "users_roles",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private List<Role> roles;
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+    @Fetch(FetchMode.JOIN)
+    @JoinTable(
+            name = "Person_Role",
+            joinColumns = @JoinColumn(name = "person_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    private Set<Role> roles;
 
     public User() {
     }
 
-    public User(Long id, String username, String password, List<Role> roles) {
+    public User(Long id, String username, String password, Set<Role> roles) {
         this.id = id;
         this.username = username;
         this.password = password;
