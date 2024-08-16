@@ -18,6 +18,12 @@ public class SecurityConfig {
     }
 
     @Bean
+    SecurityFilterChain noSecurity(HttpSecurity http) throws Exception {
+        return http
+                .authorizeHttpRequests(r -> r.anyRequest().permitAll()).build();
+    }
+
+//    @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
                 .authorizeHttpRequests(requests -> requests
