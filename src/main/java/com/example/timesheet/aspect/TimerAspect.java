@@ -5,6 +5,7 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.stereotype.Component;
 
 @Aspect
@@ -18,6 +19,13 @@ public class TimerAspect {
 
     @Around(value = "timePointcut()")
     public Object timeAround(ProceedingJoinPoint pjp) throws Throwable {
+
+        MethodSignature methodSignature = (MethodSignature) pjp.getSignature();
+        Timer timer = methodSignature.getMethod().getAnnotation(Timer.class);
+        if (!timer.enabled()) {
+            return pjp.proceed();
+        }
+
         long start = System.currentTimeMillis();
         try {
             return pjp.proceed();
