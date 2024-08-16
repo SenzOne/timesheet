@@ -29,8 +29,8 @@ public class User {
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @Fetch(FetchMode.JOIN)
     @JoinTable(
-            name = "Person_Role",
-            joinColumns = @JoinColumn(name = "person_id"),
+            name = "User_Role",
+            joinColumns = @JoinColumn(name = "User_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
     private Set<Role> roles;
