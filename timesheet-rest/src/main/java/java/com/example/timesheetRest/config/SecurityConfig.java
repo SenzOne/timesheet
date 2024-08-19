@@ -1,4 +1,4 @@
-package com.example.timesheet.config;
+package java.com.example.timesheetRest.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,12 +18,6 @@ public class SecurityConfig {
     }
 
     @Bean
-    SecurityFilterChain noSecurity(HttpSecurity http) throws Exception {
-        return http
-                .authorizeHttpRequests(r -> r.anyRequest().permitAll()).build();
-    }
-
-//    @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
                 .authorizeHttpRequests(requests -> requests

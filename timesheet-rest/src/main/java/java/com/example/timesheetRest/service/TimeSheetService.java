@@ -1,11 +1,11 @@
-package com.example.timesheet.service;
+package java.com.example.timesheetRest.service;
 
-import com.example.timesheet.aspect.Timer;
-import com.example.timesheet.model.TimeSheet;
-import com.example.timesheet.repository.ProjectRepository;
-import com.example.timesheet.repository.TimeSheetRepository;
+
 import org.springframework.stereotype.Service;
 
+import java.com.example.timesheetRest.model.TimeSheet;
+import java.com.example.timesheetRest.repository.ProjectRepository;
+import java.com.example.timesheetRest.repository.TimeSheetRepository;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
@@ -21,7 +21,6 @@ public class TimeSheetService {
         this.projectRepository = projectRepository;
     }
 
-    @Timer
     public Optional<TimeSheet> getById(Long id) {
         return timesheetRepository.findById(id);
     }
